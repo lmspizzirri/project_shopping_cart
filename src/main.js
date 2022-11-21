@@ -27,5 +27,3 @@ const criacaoProdutos = async () => {
   removeLoad();
 }
 criacaoProdutos();
-window.onload = () => {
-}
