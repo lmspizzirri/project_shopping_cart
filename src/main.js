@@ -44,7 +44,17 @@ const loadCart = () => {
     cart.appendChild(cartElement);
   });
 }
-
+const subtotal = () => {
+  const cart = document.querySelector('.cart__products');
+  console.log(cart);
+  const prices = cart.map((element) => element.price);
+  const total = 0;
+  for(i = 0; i < prices.length; i += 1){
+    total += prices[i];
+  }
+  const subtotalInfo = document.getElementsByClassName('total-price');
+  subtotalInfo.innerText = `R$ ${total}`;
+}
 window.onload = () => {
   loadCart();
 }
