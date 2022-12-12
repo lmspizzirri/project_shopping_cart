@@ -34,3 +34,17 @@ const criacaoProdutos = async () => {
 }
 
 criacaoProdutos();
+
+const loadCart = () => {
+  const savedIds = getSavedCartIDs();
+  const cart = document.querySelector('.cart__products');
+  savedIds.forEach(async (id) => {
+    const data = await fetchProduct(id);
+    const cartElement = createProductElement(data);
+    cart.appendChild(cartElement);
+  });
+}
+
+window.onload = () => {
+  loadCart();
+}
