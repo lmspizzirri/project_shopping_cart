@@ -1,4 +1,4 @@
-import { getSavedCartIDs, saveCartID } from './helpers/cartFunctions';
+import { getSavedCartIDs } from './helpers/cartFunctions';
 import { searchCep } from './helpers/cepFunctions';
 import { fetchProduct, fetchProductsList } from './helpers/fetchFunctions';
 import { createProductElement } from './helpers/shopFunctions';
@@ -22,8 +22,7 @@ const criacaoProdutos = async () => {
     const info = await fetchProductsList('computador');
     // Adicionando dentro da section, os elementos com as info dos produtos
     info.forEach((element) => products.appendChild(createProductElement(element)));
-  }
-  catch (error) {
+  } catch (error) {
     const errorMessage = document.createElement('p');
     errorMessage.className = 'error';
     errorMessage.innerText = 'Algum erro ocorreu, recarregue a página e tente novamente';
