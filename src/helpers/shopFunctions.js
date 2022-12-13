@@ -18,6 +18,15 @@ const createProductImageElement = (imageSource) => {
   return img;
 };
 
+let sum = 0;
+const totalPrice = document.querySelector('.total-price');
+const sumPrice = (price) => {
+  sum += price;
+  totalPrice.textContent = sum.toFixed(2);
+  let sumSaved = totalPrice.textContent;
+  localStorage.setItem('cartPrice', JSON.stringify(sumSaved));
+};
+
 /**
  * Função responsável por criar e retornar qualquer elemento.
  * @param {string} element - Nome do elemento a ser criado.
@@ -36,19 +45,20 @@ export const createCustomElement = (element, className, innerText = '') => {
  * Função que recupera o ID do produto passado como parâmetro.
  * @param {Element} product - Elemento do produto.
  * @returns {string} ID do produto.
- */
+*/
 export const getIdFromProduct = (product) => (
   product.querySelector('span.product__id').innerText
-);
+  );
 
-/**
- * Função que remove o produto do carrinho.
+  /**
+   * Função que remove o produto do carrinho.
  * @param {Element} li - Elemento do produto a ser removido do carrinho.
  * @param {string} id - ID do produto a ser removido do carrinho.
  */
-const removeCartProduct = (li, id) => {
+const removeCartProduct = (li, id, price) => {
   li.remove();
   removeCartID(id);
+  sumPrice(-price);
 };
 
 /**
@@ -88,8 +98,16 @@ export const createCartProductElement = ({ id, title, price, pictures }) => {
   );
   li.appendChild(removeButton);
 
-  li.addEventListener('click', () => removeCartProduct(li, id));
+  li.addEventListener('click', () => removeCartProduct(li, id, price));
+  sumPrice(price);
   return li;
+};
+
+
+
+export const getSavedCartPrice = () => {
+  const cartPrice = localStorage.getItem('cartPrice');
+  return cartPrice ? JSON.parse(cartPrice) : [];
 };
 
 const add = async (product) => {
