@@ -1,7 +1,8 @@
 import { getSavedCartIDs } from './helpers/cartFunctions';
 import { searchCep } from './helpers/cepFunctions';
 import { fetchProduct, fetchProductsList } from './helpers/fetchFunctions';
-import { createProductElement, getSavedCartPrice, createCartProductElement } from './helpers/shopFunctions';
+import { createProductElement, getSavedCartPrice,
+createCartProductElement } from './helpers/shopFunctions';
 import './style.css';
 
 document.querySelector('.cep-button').addEventListener('click', searchCep);
@@ -48,7 +49,7 @@ const loadCartPrice = () => {
   const totalPrice = document.querySelector('.total-price');
   totalPrice.textContent = savedPrice;
   console.log(savedPrice);
-}
+};
 
 window.onload = () => {
   loadCart();

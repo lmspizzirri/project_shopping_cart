@@ -23,7 +23,7 @@ const totalPrice = document.querySelector('.total-price');
 const sumPrice = (price) => {
   sum += price;
   totalPrice.textContent = sum.toFixed(2);
-  let sumSaved = totalPrice.textContent;
+  const sumSaved = totalPrice.textContent;
   localStorage.setItem('cartPrice', JSON.stringify(sumSaved));
 };
 
@@ -48,9 +48,9 @@ export const createCustomElement = (element, className, innerText = '') => {
 */
 export const getIdFromProduct = (product) => (
   product.querySelector('span.product__id').innerText
-  );
+);
 
-  /**
+/**
    * Função que remove o produto do carrinho.
  * @param {Element} li - Elemento do produto a ser removido do carrinho.
  * @param {string} id - ID do produto a ser removido do carrinho.
@@ -102,8 +102,6 @@ export const createCartProductElement = ({ id, title, price, pictures }) => {
   sumPrice(price);
   return li;
 };
-
-
 
 export const getSavedCartPrice = () => {
   const cartPrice = localStorage.getItem('cartPrice');
